@@ -6,7 +6,7 @@
 /*   By: clingier <clingier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 13:00:38 by clingier          #+#    #+#             */
-/*   Updated: 2018/11/24 12:45:51 by clingier         ###   ########.fr       */
+/*   Updated: 2018/11/27 14:54:34 by clingier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_file
 	int				lenuid;
 }				t_file;
 
+void			ft_flagerror(char t);
 void			ft_ls(char *directory, unsigned char flags);
 void			malcheck(void *ptr);
 unsigned char	ft_flag(int argc, char **argv);

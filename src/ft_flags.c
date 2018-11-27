@@ -6,20 +6,11 @@
 /*   By: clingier <clingier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 12:58:38 by clingier          #+#    #+#             */
-/*   Updated: 2018/11/24 11:45:26 by clingier         ###   ########.fr       */
+/*   Updated: 2018/11/27 14:50:03 by clingier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_ls.h>
-
-void				ft_flagerror(char t)
-{
-	ft_putstr_fd("ls: illegal option -- ", 2);
-	ft_putchar_fd(t, 2);
-	ft_putchar_fd('\n', 2);
-	ft_putendl_fd("usage: ls [-Ralrt] [file ...]", 2);
-	exit(EXIT_FAILURE);
-}
 
 unsigned char		ft_case(char c, unsigned char flags)
 {
