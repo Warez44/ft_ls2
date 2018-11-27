@@ -38,7 +38,6 @@ void	putnbr_format(unsigned long num, int format)
 		i--;
 	}
 	ft_putstr(buf);
-	ft_putstr(" ");
 	free(buf);
 }
 
@@ -85,9 +84,16 @@ void	putparams(t_file file)
 {
 	strpermission(file.stats.st_mode);
 	putnbr_format(file.stats.st_nlink, file.lenlnk);
-	putstr_format(uidname(file.stats.st_uid), file.lenuid);
+	ft_putstr(" ");
+	if (uidname(file.stats.st_uid) != NULL)
+		putstr_format(uidname(file.stats.st_uid), file.lenuid);
+	else
+		putnbr_format(file.stats.st_uid, file.lenuid);
 	ft_putstr("  ");
-	putstr_format(gidname(file.stats.st_gid), file.lengid);
+	if (gidname(file.stats.st_gid) != NULL)
+		putstr_format(gidname(file.stats.st_gid), file.lengid);
+	else
+		putnbr_format(file.stats.st_gid, file.lengid);
 	ft_putstr("  ");
 	if (!S_ISCHR(file.stats.st_mode) && !S_ISBLK(file.stats.st_mode))
 		putnbr_format(file.stats.st_size, file.lensiz);
@@ -101,7 +107,6 @@ void	putparams(t_file file)
 	ft_putstr(file.fname);
 	if (S_ISLNK(file.stats.st_mode))
 		putlink(file);
-	ft_putstr("\n");
 }
 
 void	lflag(t_file *files, unsigned char flags)
@@ -113,5 +118,8 @@ void	lflag(t_file *files, unsigned char flags)
 	if (!(flags & ONLY_FILE))
 		puttotal(files);
 	while (i < files->len)
+	{
 		putparams(files[i++]);
+		ft_putstr("\n");
+	}
 }

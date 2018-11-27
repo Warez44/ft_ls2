@@ -52,6 +52,7 @@ void	ft_puttime(const time_t *stat_time)
 
 	malcheck(str = ctime(stat_time));
 	time(&present_time);
+	ft_putstr(" ");
 	diff_time = present_time - *stat_time;
 	if (diff_time > 15552000 || diff_time < -3600)
 		year_trim(str);
@@ -64,6 +65,8 @@ char	*gidname(gid_t gid)
 	struct group *grp;
 
 	grp = getgrgid(gid);
+	if (grp == NULL)
+		return (NULL);
 	return (grp->gr_name);
 }
 

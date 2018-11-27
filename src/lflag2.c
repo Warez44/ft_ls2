@@ -18,6 +18,8 @@ char	*uidname(uid_t uid)
 	struct passwd *pwd;
 
 	pwd = getpwuid(uid);
+	if (pwd == NULL)
+		return (NULL);
 	return (pwd->pw_name);
 }
 
@@ -48,6 +50,13 @@ void	getlenlnk(t_file *files)
 		files[i++].lenlnk = len;
 }
 
+int		ft_betterstrlen(char *str)
+{
+	if (str == NULL)
+		return (0);
+	return (ft_strlen(str));
+}
+
 void	getmaxstr(t_file *files)
 {
 	int i;
@@ -60,8 +69,8 @@ void	getmaxstr(t_file *files)
 	max[1] = 0;
 	while (i < files->len)
 	{
-		len1 = ft_strlen(uidname(files[i].stats.st_uid));
-		len2 = ft_strlen(gidname(files[i].stats.st_gid));
+		len1 = ft_betterstrlen(uidname(files[i].stats.st_uid));
+		len2 = ft_betterstrlen(gidname(files[i].stats.st_gid));
 		if (len1 > max[0])
 			max[0] = len1;
 		if (len2 > max[1])
@@ -102,17 +111,4 @@ void	getlensiz(t_file *files)
 	i = 0;
 	while (i < files->len)
 		files[i++].lensiz = len;
-}
-
-void	putstr_format(char *str, int format)
-{
-	int len;
-
-	len = ft_strlen(str);
-	while (format - len > 0)
-	{
-		ft_putstr(" ");
-		len++;
-	}
-	ft_putstr(str);
 }

@@ -42,3 +42,16 @@ int		ft_major(dev_t st_dev)
 {
 	return ((int)(((unsigned)(st_dev) >> 24) & 0xFF));
 }
+
+void	putstr_format(char *str, int format)
+{
+	int len;
+
+	len = ft_strlen(str);
+	while (format - len > 0)
+	{
+		ft_putstr(" ");
+		len++;
+	}
+	ft_putstr(str);
+}
